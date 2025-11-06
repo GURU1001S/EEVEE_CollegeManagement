@@ -185,11 +185,39 @@ const MaintenanceSection = () => {
     )
 }
 
+const initialPasses = [
+    { type: 'Leave', from: '2024-07-25', to: '2024-07-28', status: 'Approved' },
+    { type: 'Gate Pass', from: '2024-07-22', to: '2024-07-22', status: 'Used' },
+];
+
 const GatePassSection = () => {
-    const passes = [
-        { type: 'Leave', from: '2024-07-25', to: '2024-07-28', status: 'Approved' },
-        { type: 'Gate Pass', from: '2024-07-22', to: '2024-07-22', status: 'Used' },
-    ];
+    const { toast } = useToast();
+    const [passes, setPasses] = useState(initialPasses);
+    const [newPass, setNewPass] = useState({ type: '', from: '', to: '', reason: '' });
+
+    const handlePassSubmit = () => {
+        if (!newPass.type || !newPass.from || !newPass.to || !newPass.reason) {
+            toast({
+                variant: 'destructive',
+                title: 'Incomplete Request',
+                description: 'Please fill out all fields before submitting.',
+            });
+            return;
+        }
+
+        const pass = {
+            ...newPass,
+            status: 'Pending',
+        };
+
+        setPasses([pass, ...passes]);
+        setNewPass({ type: '', from: '', to: '', reason: '' });
+        toast({
+            title: 'Request Submitted!',
+            description: 'Your pass request has been sent for approval.',
+        });
+    };
+
     return (
         <div className="grid md:grid-cols-3 gap-8">
              <div className="md:col-span-1">
@@ -198,19 +226,33 @@ const GatePassSection = () => {
                         <CardTitle>Apply for Pass</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                        <Select>
+                        <Select value={newPass.type} onValueChange={(value) => setNewPass({...newPass, type: value})}>
                             <SelectTrigger><SelectValue placeholder="Select Pass Type" /></SelectTrigger>
                             <SelectContent>
-                                <SelectItem value="leave">Leave Pass</SelectItem>
-                                <SelectItem value="gate">Gate Pass (Outing)</SelectItem>
+                                <SelectItem value="Leave">Leave Pass</SelectItem>
+                                <SelectItem value="Gate Pass">Gate Pass (Outing)</SelectItem>
                             </SelectContent>
                         </Select>
-                        <Input type="date" placeholder="From Date" />
-                        <Input type="date" placeholder="To Date" />
-                        <Textarea placeholder="Reason..." />
+                        <Input 
+                            type="date" 
+                            placeholder="From Date"
+                            value={newPass.from}
+                            onChange={(e) => setNewPass({...newPass, from: e.target.value})}
+                        />
+                        <Input 
+                            type="date" 
+                            placeholder="To Date"
+                            value={newPass.to}
+                            onChange={(e) => setNewPass({...newPass, to: e.target.value})}
+                        />
+                        <Textarea 
+                            placeholder="Reason..."
+                            value={newPass.reason}
+                            onChange={(e) => setNewPass({...newPass, reason: e.target.value})}
+                        />
                     </CardContent>
                     <CardFooter>
-                        <Button className="w-full">Submit Request</Button>
+                        <Button className="w-full" onClick={handlePassSubmit}>Submit Request</Button>
                     </CardFooter>
                 </Card>
             </div>
@@ -236,7 +278,15 @@ const GatePassSection = () => {
                                         <TableCell>{p.from}</TableCell>
                                         <TableCell>{p.to}</TableCell>
                                         <TableCell>
-                                            <Badge variant={p.status === 'Approved' ? 'default' : 'outline'} className={p.status === 'Approved' ? 'bg-emerald-100 text-emerald-800' : ''}>{p.status}</Badge>
+                                            <Badge 
+                                                variant={p.status === 'Approved' ? 'default' : p.status === 'Pending' ? 'secondary' : 'outline'} 
+                                                className={
+                                                    p.status === 'Approved' ? 'bg-emerald-100 text-emerald-800' :
+                                                    p.status === 'Pending' ? 'bg-amber-100 text-amber-800' : ''
+                                                }
+                                            >
+                                                {p.status}
+                                            </Badge>
                                         </TableCell>
                                     </TableRow>
                                 ))}
