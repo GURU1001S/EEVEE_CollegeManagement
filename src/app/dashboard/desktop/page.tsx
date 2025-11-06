@@ -17,11 +17,23 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 const ClockWidget = () => {
-  const [time, setTime] = useState(new Date());
+  const [time, setTime] = useState<Date | null>(null);
+
   useEffect(() => {
+    setTime(new Date());
     const timer = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
+
+  if (!time) {
+    return (
+      <div className="widget glass-panel absolute top-8 left-8 p-4 rounded-2xl">
+        <div className="text-5xl font-bold font-headline text-white/90">--:--</div>
+        <div className="text-lg text-white/70">Loading...</div>
+      </div>
+    );
+  }
+
   return (
     <div className="widget glass-panel absolute top-8 left-8 p-4 rounded-2xl">
       <div className="text-5xl font-bold font-headline text-white/90">
