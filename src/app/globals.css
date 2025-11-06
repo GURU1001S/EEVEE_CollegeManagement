@@ -150,4 +150,12 @@ body {
   .desktop-icon { 
     animation: float 6s ease-in-out infinite; 
   }
+  
+  .vibrant-outline {
+    position: relative;
+    border: 1px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to right top, #2563eb, #10b981);
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.5), 0 0 20px rgba(16, 185, 129, 0.5);
+  }
 }

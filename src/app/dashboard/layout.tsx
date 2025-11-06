@@ -10,6 +10,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { Logo } from '@/components/logo';
 import { cn } from '@/lib/utils';
+import VantaBackground from '@/components/vanta-background';
 
 const getPageTitle = (pathname: string) => {
   if (pathname.includes('/dashboard/desktop')) return 'Desktop';
@@ -56,6 +57,7 @@ export default function DashboardLayout({
 
   const handleMinimize = () => {
     setIsMinimized(true);
+    router.push('/dashboard/desktop');
   };
   
   const handleMaximizeRestore = () => {
@@ -71,17 +73,17 @@ export default function DashboardLayout({
   return (
     <div
       className="flex flex-col h-screen bg-slate-100 dark:bg-slate-900 bg-cover bg-center"
-      style={{ backgroundImage: 'url(/background.png)'}}
       onMouseEnter={() => setTaskbarVisible(true)}
       onMouseLeave={() => setTaskbarVisible(false)}
     >
+       <VantaBackground />
        <ThemeToggle className="absolute top-4 right-4 z-50" />
       <main className={cn(
-          "flex-1 overflow-auto p-4 sm:p-8 md:p-12 transition-all duration-300 ease-in-out",
+          "flex-1 overflow-auto p-4 sm:p-8 md:p-12 transition-all duration-300 ease-in-out relative z-10",
           isDesktop && 'p-0 sm:p-0 md:p-0'
         )}>
         <div className={cn(
-            "mx-auto h-full w-full rounded-xl border border-white/20 bg-clip-padding backdrop-filter backdrop-blur-xl bg-white/30 dark:bg-black/30 shadow-2xl transition-all duration-300 ease-in-out",
+            "mx-auto h-full w-full rounded-xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-white/30 dark:bg-black/30 shadow-2xl transition-all duration-300 ease-in-out vibrant-outline",
             isMaximized ? 'max-w-full h-full' : 'max-w-7xl h-full',
             isMinimized ? 'opacity-0 translate-y-full' : 'opacity-100 translate-y-0',
             (isDesktop || !isWindowVisible) && 'hidden'
