@@ -1,3 +1,5 @@
+'use client';
+
 import { ArrowUpRight, DollarSign, Users, BookOpen } from 'lucide-react';
 import {
   Bar,
