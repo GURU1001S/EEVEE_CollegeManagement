@@ -1,0 +1,19 @@
+diff --git a/node_modules/recharts/package.json b/node_modules/recharts/package.json
+index 585c2c9..587504f 100644
+--- a/node_modules/recharts/package.json
++++ b/node_modules/recharts/package.json
+@@ -95,12 +95,7 @@
+   "peerDependencies": {
+     "react": ">=16.0.0",
+     "react-dom": ">=16.0.0"
+-  },
+-  "peerDependenciesMeta": {
+-    "react": {
+-      "optional": true
+-    },
+-    "react-dom": {
+-      "optional": true
+-    }
+   }
+ }
++
