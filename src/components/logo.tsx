@@ -4,8 +4,9 @@ import Link from 'next/link';
 export function Logo() {
   return (
     <Link href="/dashboard" className="flex items-center gap-2" aria-label="EEVEE OS Home">
-      <Atom className="h-8 w-8 text-primary" />
-      <span className="text-2xl font-bold font-headline text-primary">EEVEE OS</span>
+      <div className="h-10 w-10 flex items-center justify-center rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors">
+        <Atom className="h-6 w-6 text-primary" />
+      </div>
     </Link>
   );
 }

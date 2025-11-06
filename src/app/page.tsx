@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Lock, Mail, UserCheck } from 'lucide-react';
+import { Lock, Mail } from 'lucide-react';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
@@ -18,6 +18,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Logo } from '@/components/logo';
 import { useToast } from '@/hooks/use-toast';
+import { ThemeToggle } from '@/components/theme-toggle';
+
 
 const credentials = {
   student: { email: 'student@example.com', password: 'password' },
@@ -85,7 +87,8 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-emerald-50 dark:from-slate-900 dark:via-slate-800 dark:to-emerald-950 p-4">
+    <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-indigo-200 via-white to-emerald-200 dark:from-indigo-950 dark:via-slate-900 dark:to-emerald-950 p-4 animated-gradient">
+      <ThemeToggle className="absolute top-4 right-4 z-10" />
       <Card className="w-full max-w-md bg-white/60 dark:bg-slate-950/60 backdrop-blur-xl shadow-2xl rounded-2xl border-white/20 dark:border-slate-800/50">
         <CardHeader className="items-center text-center p-6">
           <Logo />

@@ -60,30 +60,30 @@ export function SidebarNav() {
             <TooltipTrigger asChild>
               <Link
                 href={item.href}
-                className={`flex h-10 w-10 items-center justify-center rounded-lg transition-colors hover:bg-accent hover:text-accent-foreground ${
-                  pathname === item.href ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'
+                className={`flex h-10 w-10 items-center justify-center rounded-lg transition-colors duration-200 hover:bg-primary/20 hover:text-primary transform hover:scale-110 ${
+                  pathname === item.href ? 'bg-primary/20 text-primary' : 'text-muted-foreground'
                 }`}
               >
                 <item.icon className="h-5 w-5" />
                 <span className="sr-only">{item.label}</span>
               </Link>
             </TooltipTrigger>
-            <TooltipContent side="top">{item.label}</TooltipContent>
+            <TooltipContent side="top" className="bg-black/70 text-white border-none rounded-md backdrop-blur-sm">{item.label}</TooltipContent>
           </Tooltip>
         ))}
          <Tooltip>
             <TooltipTrigger asChild>
                 <Link
                     href={settingsMenuItem.href}
-                    className={`flex h-10 w-10 items-center justify-center rounded-lg transition-colors hover:bg-accent hover:text-accent-foreground ${
-                    pathname.startsWith(settingsMenuItem.href) ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'
+                    className={`flex h-10 w-10 items-center justify-center rounded-lg transition-colors duration-200 hover:bg-primary/20 hover:text-primary transform hover:scale-110 ${
+                    pathname.startsWith(settingsMenuItem.href) ? 'bg-primary/20 text-primary' : 'text-muted-foreground'
                     }`}
                 >
                     <settingsMenuItem.icon className="h-5 w-5" />
                     <span className="sr-only">{settingsMenuItem.label}</span>
                 </Link>
             </TooltipTrigger>
-            <TooltipContent side="top">{settingsMenuItem.label}</TooltipContent>
+            <TooltipContent side="top" className="bg-black/70 text-white border-none rounded-md backdrop-blur-sm">{settingsMenuItem.label}</TooltipContent>
         </Tooltip>
       </nav>
     </TooltipProvider>
