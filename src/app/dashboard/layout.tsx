@@ -50,6 +50,14 @@ export default function DashboardLayout({
   const isDesktop = pathname === '/dashboard/desktop';
 
   useEffect(() => {
+    // Redirect to login if role is not set
+    const role = localStorage.getItem('userRole');
+    if (!role) {
+      router.push('/');
+    }
+  }, [router]);
+
+  useEffect(() => {
     // When navigating away from desktop, store the path
     if (pathname !== '/dashboard/desktop' && pathname !== '/dashboard') {
       setLastOpenPage(pathname);
