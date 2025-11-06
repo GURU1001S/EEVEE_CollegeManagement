@@ -21,10 +21,10 @@ import {
   Star,
   Zap,
 } from 'lucide-react';
-import Image from 'next/image';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
 const deliveryPartners = [
   {
@@ -63,7 +63,7 @@ const deliveryPartners = [
   },
   {
     id: 4,
-    name: 'McDonald\'s',
+    name: "McDonald's",
     logo: 'https://picsum.photos/seed/mcd/100/100',
     available: true,
     deliveryTime: '15-20 min',
@@ -102,13 +102,11 @@ const PartnerCard = ({ partner }: { partner: (typeof deliveryPartners)[0] }) => 
     <CardHeader>
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-4">
-          <Image
-            src={partner.logo}
-            alt={`${partner.name} logo`}
-            width={50}
-            height={50}
-            className="rounded-lg"
-          />
+          <Avatar className="h-12 w-12 text-lg">
+            <AvatarFallback className="bg-primary/20 text-primary font-bold">
+              {partner.name.charAt(0)}
+            </AvatarFallback>
+          </Avatar>
           <div>
             <CardTitle className="text-xl">{partner.name}</CardTitle>
             <div className="flex items-center gap-2 mt-1">
