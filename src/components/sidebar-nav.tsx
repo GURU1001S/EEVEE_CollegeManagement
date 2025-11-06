@@ -20,8 +20,8 @@ import { SidebarMenu, SidebarMenuItem, SidebarMenuButton } from '@/components/ui
 
 const menuItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard, adminOnly: true },
-  { href: '/dashboard/student', label: 'Student Dashboard', icon: LayoutDashboard, studentOnly: true },
-  { href: '/dashboard/faculty', label: 'Faculty Dashboard', icon: LayoutDashboard, facultyOnly: true },
+  { href: '/dashboard/student', label: 'Dashboard', icon: LayoutDashboard, studentOnly: true },
+  { href: '/dashboard/faculty', label: 'Dashboard', icon: LayoutDashboard, facultyOnly: true },
   { href: '/dashboard/academics', label: 'Academics', icon: BookOpen },
   { href: '/dashboard/students', label: 'Students', icon: Users, adminOnly: true },
   { href: '/dashboard/placements', label: 'Placements', icon: Briefcase },
@@ -57,7 +57,7 @@ export function SidebarNav() {
             <SidebarMenuItem key={item.href}>
               <Link href={item.href} className="block">
                 <SidebarMenuButton
-                  isActive={pathname.startsWith(item.href) && (item.href === '/dashboard' ? pathname === item.href : true)}
+                  isActive={pathname === item.href}
                   className="w-full justify-start"
                   tooltip={item.label}
                 >
