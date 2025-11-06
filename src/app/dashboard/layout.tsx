@@ -24,8 +24,8 @@ const getPageTitle = (pathname: string) => {
   if (pathname.includes('/dashboard/library')) return 'Library';
   if (pathname.includes('/dashboard/placements')) return 'Placements';
   if (pathname.includes('/dashboard/settings')) return 'Settings';
-  if (pathname.includes('/dashboard/student')) return 'Student Dashboard';
-  if (pathname.startsWith('/dashboard')) return 'Admin Dashboard';
+  if (pathname.includes('/dashboard/student')) return 'Student Hub';
+  if (pathname.startsWith('/dashboard')) return 'Control Hub';
   return 'EEVEE OS';
 };
 
@@ -47,7 +47,7 @@ export default function DashboardLayout({
 
   useEffect(() => {
     // When navigating away from desktop, store the path
-    if (pathname !== '/dashboard/desktop') {
+    if (pathname !== '/dashboard/desktop' && pathname !== '/dashboard') {
       setLastOpenPage(pathname);
       setIsWindowVisible(true);
       setIsMinimized(false);

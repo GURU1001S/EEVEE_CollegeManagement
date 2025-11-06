@@ -12,7 +12,7 @@ import {
   Newspaper,
   Rss,
   Target,
-  User,
+  Users,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -51,14 +51,14 @@ const gradesData = [
   { name: 'Sem 5', gpa: 3.9 },
 ];
 
-export default function StudentDashboard() {
-    return (
+export default function AdminDashboard() {
+  return (
     <div className="flex flex-col gap-8">
       <div className="flex justify-between items-start">
         <div>
-          <h1 className="text-3xl font-bold font-headline">Student Hub</h1>
+          <h1 className="text-3xl font-bold font-headline">Control Hub</h1>
           <p className="text-muted-foreground">
-            Welcome to your personal dashboard.
+            Welcome to your unified dashboard.
           </p>
         </div>
         <div className="flex gap-2">
