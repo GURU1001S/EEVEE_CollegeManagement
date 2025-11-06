@@ -126,9 +126,8 @@ const initialDiscussions = [
 const AlumniCard = ({ person }: { person: (typeof alumni)[0] }) => (
   <Card>
     <CardContent className="p-4 flex flex-col items-center text-center">
-      <Avatar className="h-20 w-20 mb-4">
-        <Image src={person.avatar} alt={person.name} width={80} height={80} className="rounded-full" data-ai-hint="anime character" />
-        <AvatarFallback>{person.name.slice(0, 2)}</AvatarFallback>
+      <Avatar className="h-20 w-20 mb-4 text-2xl">
+        <AvatarFallback>{person.name.slice(0, 2).toUpperCase()}</AvatarFallback>
       </Avatar>
       <p className="font-bold">{person.name}</p>
       <p className="text-sm text-muted-foreground">Batch of {person.batch}</p>
@@ -184,8 +183,7 @@ const MentorshipSection = () => (
                     <Card key={mentor.name} className="flex items-center p-4 justify-between">
                         <div className="flex items-center gap-4">
                             <Avatar>
-                                <Image src={mentor.avatar} alt={mentor.name} width={40} height={40} className="rounded-full" data-ai-hint="anime character" />
-                                <AvatarFallback>{mentor.name.slice(0,2)}</AvatarFallback>
+                                <AvatarFallback>{mentor.name.slice(0,2).toUpperCase()}</AvatarFallback>
                             </Avatar>
                             <div>
                                 <p className="font-bold">{mentor.name}</p>
@@ -370,5 +368,3 @@ export default function AlumniPage() {
     </div>
   );
 }
-
-    

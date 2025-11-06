@@ -95,8 +95,7 @@ const MyRoomSection = () => (
         <CardContent className="space-y-4">
           {roommates.map(roommate => (
             <Card key={roommate.name} className="flex items-center p-4 gap-4">
-                <Avatar className="h-12 w-12">
-                <Image src={roommate.avatarUrl} alt={roommate.name} width={48} height={48} className="rounded-full" data-ai-hint="person portrait"/>
+                <Avatar className="h-12 w-12 text-xl">
                 <AvatarFallback>{roommate.name.slice(0,2).toUpperCase()}</AvatarFallback>
                 </Avatar>
                 <div>
@@ -434,5 +433,3 @@ export default function HostelPage() {
     </div>
   );
 }
-
-    
