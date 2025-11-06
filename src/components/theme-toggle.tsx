@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 export function ThemeToggle({ className }: { className?: string }) {
-  const [theme, setTheme] = React.useState('light');
+  const [theme, setTheme] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     const localTheme = localStorage.getItem('theme');
@@ -15,6 +15,8 @@ export function ThemeToggle({ className }: { className?: string }) {
       setTheme(localTheme);
     } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       setTheme('dark');
+    } else {
+      setTheme('light');
     }
   }, []);
 
@@ -22,7 +24,7 @@ export function ThemeToggle({ className }: { className?: string }) {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
       localStorage.setItem('theme', 'dark');
-    } else {
+    } else if (theme === 'light') {
       document.documentElement.classList.remove('dark');
       localStorage.setItem('theme', 'light');
     }
@@ -31,6 +33,10 @@ export function ThemeToggle({ className }: { className?: string }) {
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
+  
+  if (theme === null) {
+    return <div className="h-9 w-9" />; // Or a spinner/skeleton
+  }
 
   return (
     <Button variant="ghost" size="icon" onClick={toggleTheme} className={cn('rounded-full hover:bg-white/20', className)}>
