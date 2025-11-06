@@ -3,17 +3,21 @@
 import { useState, useEffect, useRef } from 'react';
 
 // This is a workaround for the fact that Vanta.js is not a module
-declare const VANTA: any;
+declare global {
+    interface Window {
+        VANTA: any;
+    }
+}
 
 const VantaBackground = () => {
   const [vantaEffect, setVantaEffect] = useState<any>(null);
   const vantaRef = useRef(null);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && VANTA && VANTA.WAVES) {
+    if (typeof window !== 'undefined' && window.VANTA && window.VANTA.WAVES) {
       if (!vantaEffect) {
         setVantaEffect(
-          VANTA.WAVES({
+          window.VANTA.WAVES({
             el: vantaRef.current,
             mouseControls: true,
             touchControls: true,
