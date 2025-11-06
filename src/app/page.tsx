@@ -63,19 +63,7 @@ export default function LoginPage() {
 
     if (loggedIn) {
       localStorage.setItem('userRole', role);
-      switch (role) {
-        case 'student':
-          router.push('/dashboard/student');
-          break;
-        case 'faculty':
-          router.push('/dashboard/faculty');
-          break;
-        case 'admin':
-          router.push('/dashboard');
-          break;
-        default:
-          break;
-      }
+      router.push('/dashboard/desktop');
     } else {
       setError('Invalid email or password.');
       toast({

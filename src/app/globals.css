@@ -98,4 +98,56 @@ body {
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
+
+  .desktop-bg {
+    background: radial-gradient(circle at 20% 20%, #1e3a8a, #312e81, #0f172a);
+    background-size: 400% 400%;
+    animation: gradientFlow 15s ease infinite;
+  }
+
+  @keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    @apply shadow-2xl;
+  }
+
+  .desktop-icon {
+    @apply flex flex-col items-center justify-center text-center gap-2;
+    width: 90px;
+    height: 90px;
+    padding: 10px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    transition: all 0.25s ease;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .desktop-icon:hover {
+    transform: translateY(-6px) scale(1.05);
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  .desktop-icon p {
+    @apply text-xs font-medium text-white/80 truncate w-full;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-4px); }
+    100% { transform: translateY(0px); }
+  }
+  .desktop-icon { 
+    animation: float 6s ease-in-out infinite; 
+  }
 }

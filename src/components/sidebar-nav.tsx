@@ -12,6 +12,7 @@ import {
   Settings,
   Utensils,
   Users,
+  Atom
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -19,7 +20,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { useEffect, useState } from 'react';
 
 const menuItems = [
-  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard, adminOnly: true },
+  { href: '/dashboard', label: 'Admin', icon: Atom, adminOnly: true },
   { href: '/dashboard/student', label: 'Dashboard', icon: LayoutDashboard, studentOnly: true },
   { href: '/dashboard/faculty', label: 'Dashboard', icon: LayoutDashboard, facultyOnly: true },
   { href: '/dashboard/academics', label: 'Academics', icon: BookOpen },
@@ -49,8 +50,11 @@ export function SidebarNav() {
     if (role === 'student') return !item.adminOnly && !item.facultyOnly;
     if (role === 'faculty') return !item.adminOnly && !item.studentOnly;
     if (role === 'admin') return !item.studentOnly && !item.facultyOnly;
-    return !item.studentOnly && !item.facultyOnly && !item.adminOnly;
+    return false; // Default to not showing anything if role is not set
   });
+
+  const isDesktop = pathname === '/dashboard/desktop';
+  if (isDesktop) return null;
 
   return (
     <TooltipProvider>

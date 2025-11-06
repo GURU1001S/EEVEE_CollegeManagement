@@ -1,16 +1,18 @@
 'use client';
 
-import { Bell, Search, Minus, Square, X } from 'lucide-react';
+import { Bell, Search, Minus, Square, X, PanelTop } from 'lucide-react';
 import { SidebarNav } from '@/components/sidebar-nav';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { UserNav } from '@/components/user-nav';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { useState, useMemo } from 'react';
-import { usePathname } from 'next/navigation';
+import { useState, useMemo, useEffect } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { Logo } from '@/components/logo';
+import { cn } from '@/lib/utils';
 
 const getPageTitle = (pathname: string) => {
+  if (pathname.includes('/dashboard/desktop')) return 'Desktop';
   if (pathname.includes('/dashboard/academics')) return 'Academics';
   if (pathname.includes('/dashboard/alumni')) return 'Alumni Network';
   if (pathname.includes('/dashboard/canteen')) return 'Canteen';
@@ -22,7 +24,8 @@ const getPageTitle = (pathname: string) => {
   if (pathname.includes('/dashboard/placements')) return 'Placements';
   if (pathname.includes('/dashboard/settings')) return 'Settings';
   if (pathname.includes('/dashboard/student')) return 'Student Dashboard';
-  return 'Admin Dashboard';
+  if (pathname.startsWith('/dashboard')) return 'Admin Dashboard';
+  return 'EEVEE OS';
 };
 
 export default function DashboardLayout({
@@ -31,8 +34,39 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const [isTaskbarVisible, setTaskbarVisible] = useState(false);
+  const [isMaximized, setIsMaximized] = useState(true);
+  const [isMinimized, setIsMinimized] = useState(false);
+  const [isWindowVisible, setIsWindowVisible] = useState(true);
   const pathname = usePathname();
+  const router = useRouter();
   const pageTitle = useMemo(() => getPageTitle(pathname), [pathname]);
+
+  const isDesktop = pathname === '/dashboard/desktop';
+
+  useEffect(() => {
+    // When navigating, ensure the window is visible and not minimized.
+    setIsWindowVisible(true);
+    setIsMinimized(false);
+  }, [pathname]);
+
+  const handleClose = () => {
+    setIsWindowVisible(false);
+    router.push('/dashboard/desktop');
+  };
+
+  const handleMinimize = () => {
+    setIsMinimized(true);
+  };
+  
+  const handleMaximizeRestore = () => {
+    // If we are minimizing, we want to restore to the previous state, not force maximize
+    if (isMinimized) {
+        setIsMinimized(false);
+    } else {
+        setIsMaximized(!isMaximized);
+    }
+  };
+
 
   return (
     <div
@@ -42,18 +76,26 @@ export default function DashboardLayout({
       onMouseLeave={() => setTaskbarVisible(false)}
     >
        <ThemeToggle className="absolute top-4 right-4 z-50" />
-      <main className="flex-1 overflow-auto p-4 sm:p-8 md:p-12">
-        <div className="mx-auto h-full w-full max-w-7xl rounded-xl border border-white/20 bg-clip-padding backdrop-filter backdrop-blur-xl bg-white/30 dark:bg-black/30 shadow-2xl">
-          <div className="flex items-center justify-between p-2 pl-4 bg-black/10 dark:bg-black/20 rounded-t-xl">
+      <main className={cn(
+          "flex-1 overflow-auto p-4 sm:p-8 md:p-12 transition-all duration-300 ease-in-out",
+          isDesktop && 'p-0 sm:p-0 md:p-0'
+        )}>
+        <div className={cn(
+            "mx-auto h-full w-full rounded-xl border border-white/20 bg-clip-padding backdrop-filter backdrop-blur-xl bg-white/30 dark:bg-black/30 shadow-2xl transition-all duration-300 ease-in-out",
+            isMaximized ? 'max-w-full h-full' : 'max-w-7xl h-full',
+            isMinimized ? 'opacity-0 translate-y-full' : 'opacity-100 translate-y-0',
+            (isDesktop || !isWindowVisible) && 'hidden'
+        )}>
+          <div className="flex items-center justify-between p-2 pl-4 bg-black/10 dark:bg-black/20 rounded-t-xl cursor-grab">
              <h2 className="font-headline text-lg font-medium">{pageTitle}</h2>
              <div className="flex items-center gap-2">
-                <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:bg-white/20">
+                <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:bg-white/20" onClick={handleMinimize}>
                   <Minus className="h-4 w-4" />
                 </Button>
-                <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:bg-white/20">
+                <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:bg-white/20" onClick={handleMaximizeRestore}>
                   <Square className="h-4 w-4" />
                 </Button>
-                <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive-foreground hover:bg-red-500/80 hover:text-white">
+                <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive-foreground hover:bg-red-500/80 hover:text-white" onClick={handleClose}>
                   <X className="h-4 w-4" />
                 </Button>
               </div>
@@ -62,6 +104,7 @@ export default function DashboardLayout({
             {children}
           </div>
         </div>
+        {isDesktop && children}
       </main>
       <footer
         className={`sticky bottom-0 z-30 flex justify-center w-full transition-transform duration-300 ease-in-out ${
@@ -70,6 +113,16 @@ export default function DashboardLayout({
       >
         <div className="flex h-16 items-center gap-4 border-t border-white/20 bg-clip-padding backdrop-filter backdrop-blur-lg bg-white/30 dark:bg-black/30 px-6 rounded-t-2xl shadow-2xl">
           <Logo />
+           {isMinimized && !isDesktop && (
+            <Button
+              variant="outline"
+              className="flex items-center gap-2 bg-black/20 text-white"
+              onClick={handleMaximizeRestore}
+            >
+              <PanelTop className="h-4 w-4" />
+              {pageTitle}
+            </Button>
+          )}
           <SidebarNav />
           <div className="relative ml-auto flex-1 md:grow-0">
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
