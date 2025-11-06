@@ -15,8 +15,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
-import { SidebarMenu, SidebarMenuItem, SidebarMenuButton } from '@/components/ui/sidebar';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 const menuItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard, adminOnly: true },
@@ -50,41 +49,39 @@ export function SidebarNav() {
   });
 
   return (
-    <>
-      <div className="flex-1 overflow-y-auto px-2">
-        <SidebarMenu>
-          {filteredMenuItems.map((item) => (
-            <SidebarMenuItem key={item.href}>
-              <Link href={item.href} className="block">
-                <SidebarMenuButton
-                  isActive={pathname === item.href}
-                  className="w-full justify-start"
-                  tooltip={item.label}
-                >
-                  <item.icon className="h-5 w-5" />
-                  <span>{item.label}</span>
-                </SidebarMenuButton>
-              </Link>
-            </SidebarMenuItem>
-          ))}
-        </SidebarMenu>
-      </div>
-      <div className="px-2">
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <Link href={settingsMenuItem.href} className="block">
-              <SidebarMenuButton
-                isActive={pathname.startsWith(settingsMenuItem.href)}
-                className="w-full justify-start"
-                tooltip={settingsMenuItem.label}
+    <TooltipProvider>
+      <nav className="flex items-center gap-2">
+        {filteredMenuItems.map((item) => (
+          <Tooltip key={item.href}>
+            <TooltipTrigger asChild>
+              <Link
+                href={item.href}
+                className={`flex h-10 w-10 items-center justify-center rounded-lg transition-colors hover:bg-accent hover:text-accent-foreground ${
+                  pathname === item.href ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'
+                }`}
               >
-                <settingsMenuItem.icon className="h-5 w-5" />
-                <span>{settingsMenuItem.label}</span>
-              </SidebarMenuButton>
-            </Link>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </div>
-    </>
+                <item.icon className="h-5 w-5" />
+                <span className="sr-only">{item.label}</span>
+              </Link>
+            </TooltipTrigger>
+            <TooltipContent side="top">{item.label}</TooltipContent>
+          </Tooltip>
+        ))}
+         <Tooltip>
+            <TooltipTrigger asChild>
+                <Link
+                    href={settingsMenuItem.href}
+                    className={`flex h-10 w-10 items-center justify-center rounded-lg transition-colors hover:bg-accent hover:text-accent-foreground ${
+                    pathname.startsWith(settingsMenuItem.href) ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'
+                    }`}
+                >
+                    <settingsMenuItem.icon className="h-5 w-5" />
+                    <span className="sr-only">{settingsMenuItem.label}</span>
+                </Link>
+            </TooltipTrigger>
+            <TooltipContent side="top">{settingsMenuItem.label}</TooltipContent>
+        </Tooltip>
+      </nav>
+    </TooltipProvider>
   );
 }
