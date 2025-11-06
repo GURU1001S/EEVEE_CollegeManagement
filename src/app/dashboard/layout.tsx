@@ -26,7 +26,7 @@ const getPageTitle = (pathname: string) => {
   if (pathname.includes('/dashboard/settings')) return 'Settings';
   if (pathname.includes('/dashboard/student')) return 'Student Hub';
   if (pathname.includes('/dashboard/attendance')) return 'Attendance';
-  if (pathname.includes('/dashboard/fees')) return 'Fee Payment';
+  if (pathname.includes('/dashboard/finance')) return 'Fee Payment';
   if (pathname.includes('/dashboard/order-food')) return 'Order Food';
   if (pathname.includes('/dashboard/students')) return 'Students';
   if (pathname.startsWith('/dashboard')) return 'Control Hub';

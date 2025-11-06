@@ -69,7 +69,7 @@ export default function AdminDashboard() {
             </Link>
           </Button>
           <Button variant="outline" asChild>
-             <Link href="/dashboard/fees">
+             <Link href="/dashboard/finance">
               <DollarSign className="mr-2 h-4 w-4" /> Pay Fees
             </Link>
           </Button>
