@@ -19,9 +19,11 @@ import { usePathname } from 'next/navigation';
 import { SidebarMenu, SidebarMenuItem, SidebarMenuButton } from '@/components/ui/sidebar';
 
 const menuItems = [
-  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard, adminOnly: true },
+  { href: '/dashboard/student', label: 'Student Dashboard', icon: LayoutDashboard, studentOnly: true },
+  { href: '/dashboard/faculty', label: 'Faculty Dashboard', icon: LayoutDashboard, facultyOnly: true },
   { href: '/dashboard/academics', label: 'Academics', icon: BookOpen },
-  { href: '/dashboard/students', label: 'Students', icon: Users },
+  { href: '/dashboard/students', label: 'Students', icon: Users, adminOnly: true },
   { href: '/dashboard/placements', label: 'Placements', icon: Briefcase },
   { href: '/dashboard/alumni', label: 'Alumni', icon: GraduationCap },
   { href: '/dashboard/canteen', label: 'Canteen', icon: Utensils },
@@ -36,11 +38,22 @@ const settingsMenuItem = { href: '/dashboard/settings', label: 'Settings', icon:
 export function SidebarNav() {
   const pathname = usePathname();
 
+  const isStudent = pathname.startsWith('/dashboard/student');
+  const isFaculty = pathname.startsWith('/dashboard/faculty');
+  const isAdmin = !isStudent && !isFaculty;
+
+  const filteredMenuItems = menuItems.filter(item => {
+    if (isStudent) return !item.adminOnly && !item.facultyOnly;
+    if (isFaculty) return !item.adminOnly && !item.studentOnly;
+    if (isAdmin) return !item.studentOnly && !item.facultyOnly;
+    return true;
+  });
+
   return (
     <>
       <div className="flex-1 overflow-y-auto px-2">
         <SidebarMenu>
-          {menuItems.map((item) => (
+          {filteredMenuItems.map((item) => (
             <SidebarMenuItem key={item.href}>
               <Link href={item.href} className="block">
                 <SidebarMenuButton
