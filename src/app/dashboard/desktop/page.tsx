@@ -20,36 +20,29 @@ const ClockWidget = () => {
   const [time, setTime] = useState<Date | null>(null);
 
   useEffect(() => {
+    // This will only run on the client, after initial hydration
     setTime(new Date());
     const timer = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
 
-  if (!time) {
-    return (
-      <div className="widget glass-panel absolute top-8 left-8 p-4 rounded-2xl">
-        <div className="text-5xl font-bold font-headline text-white/90">--:--</div>
-        <div className="text-lg text-white/70">Loading...</div>
-      </div>
-    );
-  }
-
   return (
     <div className="widget glass-panel absolute top-8 left-8 p-4 rounded-2xl">
       <div className="text-5xl font-bold font-headline text-white/90">
-        {time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+        {time ? time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '--:--'}
       </div>
       <div className="text-lg text-white/70">
-        {time.toLocaleDateString([], {
+        {time ? time.toLocaleDateString([], {
           weekday: 'long',
           year: 'numeric',
           month: 'long',
           day: 'numeric',
-        })}
+        }) : 'Loading...'}
       </div>
     </div>
   );
 };
+
 
 const DesktopIcon = ({
   href,
@@ -87,14 +80,16 @@ export default function DesktopPage() {
 
   useEffect(() => {
     const storedRole = localStorage.getItem('userRole') as 'student' | 'faculty' | 'admin' | null;
-    setRole(storedRole);
+    if (storedRole) {
+      setRole(storedRole);
+    }
   }, []);
 
   const filteredMenuItems = menuItems.filter(item => {
     if (role === 'student') return !item.adminOnly && !item.facultyOnly;
     if (role === 'faculty') return !item.adminOnly && !item.studentOnly;
     if (role === 'admin') return !item.studentOnly && !item.facultyOnly;
-    return false; // Default to not showing anything if role is not set
+    return false; // Default to not showing anything if role is not set or loading
   }).filter(item => {
       // remove duplicate dashboard links
       if (item.label === 'Dashboard') {
