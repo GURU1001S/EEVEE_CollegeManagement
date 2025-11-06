@@ -282,9 +282,9 @@ const VisitorManagementSection = () => (
 
 const MessSection = () => {
     const menu = {
-        Monday: { Breakfast: 'Poha', Lunch: 'Rajma Chawal', Dinner: 'Paneer Butter Masala'},
-        Tuesday: { Breakfast: 'Upma', Lunch: 'Kadhi Pakoda', Dinner: 'Chole Bhature'},
-        Wednesday: { Breakfast: 'Idli Sambar', Lunch: 'Veg Pulao', Dinner: 'Aloo Gobi'},
+        Monday: { Breakfast: 'Bread, Salad', Lunch: 'Meals', Dinner: 'Dosa & Veg Gravy'},
+        Tuesday: { Breakfast: 'Upma', Lunch: 'Meals', Dinner: 'Idly Sambar'},
+        Wednesday: { Breakfast: 'Pongal & Vadai', Lunch: 'Veg Briyani & Ice Cream', Dinner: 'Dosa & Chicken Gravy'},
     }
     return (
         <div className="grid md:grid-cols-3 gap-8">
