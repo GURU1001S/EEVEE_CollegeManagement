@@ -34,6 +34,7 @@ import {
 } from 'recharts';
 import { Calendar as CalendarComponent } from '@/components/ui/calendar';
 import { Separator } from '@/components/ui/separator';
+import Link from 'next/link';
 
 const attendanceData = [
   { name: 'Jan', attendance: 85 },
@@ -62,14 +63,20 @@ export default function AdminDashboard() {
           </p>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline">
-            <BookOpen className="mr-2 h-4 w-4" /> Check Attendance
+           <Button variant="outline" asChild>
+            <Link href="/dashboard/attendance">
+              <BookOpen className="mr-2 h-4 w-4" /> Check Attendance
+            </Link>
           </Button>
-          <Button variant="outline">
-            <DollarSign className="mr-2 h-4 w-4" /> Pay Fees
+          <Button variant="outline" asChild>
+             <Link href="/dashboard/fees">
+              <DollarSign className="mr-2 h-4 w-4" /> Pay Fees
+            </Link>
           </Button>
-          <Button variant="outline">
-            <Newspaper className="mr-2 h-4 w-4" /> Order Food
+          <Button variant="outline" asChild>
+            <Link href="/dashboard/order-food">
+              <Newspaper className="mr-2 h-4 w-4" /> Order Food
+            </Link>
           </Button>
         </div>
       </div>
@@ -79,33 +86,33 @@ export default function AdminDashboard() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
-              Overall GPA
+              Total Students
             </CardTitle>
-            <GraduationCap className="h-4 w-4 text-muted-foreground" />
+            <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">3.8</div>
-            <p className="text-xs text-muted-foreground">+0.2 from last semester</p>
+            <div className="text-2xl font-bold">1,250</div>
+            <p className="text-xs text-muted-foreground">+50 from last year</p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Attendance</CardTitle>
+            <CardTitle className="text-sm font-medium">Average Attendance</CardTitle>
             <CheckCircle className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">92%</div>
-            <p className="text-xs text-muted-foreground">Across all courses</p>
+            <div className="text-2xl font-bold">89%</div>
+            <p className="text-xs text-muted-foreground">Across all departments</p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Pending Tasks</CardTitle>
+            <CardTitle className="text-sm font-medium">Faculty on Duty</CardTitle>
             <Target className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">5</div>
-            <p className="text-xs text-muted-foreground">2 assignments, 3 forms</p>
+            <div className="text-2xl font-bold">85</div>
+            <p className="text-xs text-muted-foreground">out of 110 total faculty</p>
           </CardContent>
         </Card>
         <Card>
@@ -125,12 +132,12 @@ export default function AdminDashboard() {
         <div className="lg:col-span-2 space-y-8">
             <Card>
                 <CardHeader>
-                    <CardTitle>Performance Overview</CardTitle>
-                    <CardDescription>Your academic trends over time.</CardDescription>
+                    <CardTitle>University Performance</CardTitle>
+                    <CardDescription>Student academic trends over time.</CardDescription>
                 </CardHeader>
                 <CardContent className="grid gap-8 md:grid-cols-2">
                      <div>
-                        <h3 className="text-sm font-medium mb-2 text-center">Attendance (%)</h3>
+                        <h3 className="text-sm font-medium mb-2 text-center">Average Attendance (%)</h3>
                         <ResponsiveContainer width="100%" height={200}>
                             <BarChart data={attendanceData}>
                             <XAxis dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false}/>
@@ -141,7 +148,7 @@ export default function AdminDashboard() {
                         </ResponsiveContainer>
                     </div>
                     <div>
-                        <h3 className="text-sm font-medium mb-2 text-center">GPA</h3>
+                        <h3 className="text-sm font-medium mb-2 text-center">Average GPA</h3>
                         <ResponsiveContainer width="100%" height={200}>
                             <BarChart data={gradesData}>
                             <XAxis dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false}/>
@@ -155,14 +162,14 @@ export default function AdminDashboard() {
             </Card>
             <Card>
                 <CardHeader>
-                    <CardTitle>Smart To-Do List</CardTitle>
-                    <CardDescription>Auto-populated reminders and deadlines.</CardDescription>
+                    <CardTitle>Admin Tasks</CardTitle>
+                    <CardDescription>Key administrative actions and deadlines.</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <ul className="space-y-3">
-                        <li className="flex items-center justify-between p-2 rounded-md hover:bg-muted"><span>Physics Assignment 3</span><span className="text-sm text-muted-foreground">Due: 2 days</span></li>
-                        <li className="flex items-center justify-between p-2 rounded-md hover:bg-muted"><span>Pay Semester Fees</span><span className="text-sm text-destructive">Due: Today</span></li>
-                        <li className="flex items-center justify-between p-2 rounded-md hover:bg-muted"><span>Submit Scholarship Form</span><span className="text-sm text-muted-foreground">Due: 5 days</span></li>
+                        <li className="flex items-center justify-between p-2 rounded-md hover:bg-muted"><span>Review new student applications</span><span className="text-sm text-muted-foreground">3 applications pending</span></li>
+                        <li className="flex items-center justify-between p-2 rounded-md hover:bg-muted"><span>Approve faculty leave requests</span><span className="text-sm text-destructive">2 urgent</span></li>
+                        <li className="flex items-center justify-between p-2 rounded-md hover:bg-muted"><span>Finalize budget for next quarter</span><span className="text-sm text-muted-foreground">Due: 1 week</span></li>
                     </ul>
                 </CardContent>
             </Card>

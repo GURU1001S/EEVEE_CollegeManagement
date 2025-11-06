@@ -34,6 +34,7 @@ import {
 } from 'recharts';
 import { Calendar as CalendarComponent } from '@/components/ui/calendar';
 import { Separator } from '@/components/ui/separator';
+import Link from 'next/link';
 
 const attendanceData = [
   { name: 'Jan', attendance: 85 },
@@ -62,14 +63,20 @@ export default function StudentDashboard() {
           </p>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline">
-            <BookOpen className="mr-2 h-4 w-4" /> Check Attendance
+          <Button variant="outline" asChild>
+            <Link href="/dashboard/attendance">
+              <BookOpen className="mr-2 h-4 w-4" /> Check Attendance
+            </Link>
           </Button>
-          <Button variant="outline">
-            <DollarSign className="mr-2 h-4 w-4" /> Pay Fees
+          <Button variant="outline" asChild>
+             <Link href="/dashboard/fees">
+              <DollarSign className="mr-2 h-4 w-4" /> Pay Fees
+            </Link>
           </Button>
-          <Button variant="outline">
-            <Newspaper className="mr-2 h-4 w-4" /> Order Food
+          <Button variant="outline" asChild>
+            <Link href="/dashboard/order-food">
+              <Newspaper className="mr-2 h-4 w-4" /> Order Food
+            </Link>
           </Button>
         </div>
       </div>
