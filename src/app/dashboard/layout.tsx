@@ -41,13 +41,17 @@ export default function DashboardLayout({
   const pathname = usePathname();
   const router = useRouter();
   const pageTitle = useMemo(() => getPageTitle(pathname), [pathname]);
+  const [lastOpenPage, setLastOpenPage] = useState('/dashboard/desktop');
 
   const isDesktop = pathname === '/dashboard/desktop';
 
   useEffect(() => {
-    // When navigating, ensure the window is visible and not minimized.
-    setIsWindowVisible(true);
-    setIsMinimized(false);
+    // When navigating away from desktop, store the path
+    if (pathname !== '/dashboard/desktop') {
+      setLastOpenPage(pathname);
+      setIsWindowVisible(true);
+      setIsMinimized(false);
+    }
   }, [pathname]);
 
   const handleClose = () => {
@@ -59,13 +63,16 @@ export default function DashboardLayout({
     setIsMinimized(true);
     router.push('/dashboard/desktop');
   };
-  
+
   const handleMaximizeRestore = () => {
-    // If we are minimizing, we want to restore to the previous state, not force maximize
     if (isMinimized) {
-        setIsMinimized(false);
+      setIsMinimized(false);
+      // If we are on desktop, navigate back to the last opened page
+      if (pathname === '/dashboard/desktop') {
+        router.push(lastOpenPage);
+      }
     } else {
-        setIsMaximized(!isMaximized);
+      setIsMaximized(!isMaximized);
     }
   };
 
@@ -85,7 +92,7 @@ export default function DashboardLayout({
         <div className={cn(
             "mx-auto h-full w-full rounded-xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-white/30 dark:bg-black/30 shadow-2xl transition-all duration-300 ease-in-out vibrant-outline",
             isMaximized ? 'max-w-full h-full' : 'max-w-7xl h-full',
-            isMinimized ? 'opacity-0 translate-y-full' : 'opacity-100 translate-y-0',
+            isMinimized ? 'opacity-0 translate-y-full pointer-events-none' : 'opacity-100 translate-y-0',
             (isDesktop || !isWindowVisible) && 'hidden'
         )}>
           <div className="flex items-center justify-between p-2 pl-4 bg-black/10 dark:bg-black/20 rounded-t-xl cursor-grab">
@@ -115,14 +122,14 @@ export default function DashboardLayout({
       >
         <div className="flex h-16 items-center gap-4 border-t border-white/20 bg-clip-padding backdrop-filter backdrop-blur-lg bg-white/30 dark:bg-black/30 px-6 rounded-t-2xl shadow-2xl">
           <Logo />
-           {isMinimized && !isDesktop && (
+           {isMinimized && (
             <Button
               variant="outline"
               className="flex items-center gap-2 bg-black/20 text-white"
               onClick={handleMaximizeRestore}
             >
               <PanelTop className="h-4 w-4" />
-              {pageTitle}
+              {getPageTitle(lastOpenPage)}
             </Button>
           )}
           <SidebarNav />

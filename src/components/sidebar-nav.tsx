@@ -20,9 +20,10 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { useEffect, useState } from 'react';
 
 const menuItems = [
-  { href: '/dashboard', label: 'Admin', icon: Atom, adminOnly: true },
+  { href: '/dashboard/desktop', label: 'Desktop', icon: Atom },
   { href: '/dashboard/student', label: 'Dashboard', icon: LayoutDashboard, studentOnly: true },
   { href: '/dashboard/faculty', label: 'Dashboard', icon: LayoutDashboard, facultyOnly: true },
+  { href: '/dashboard', label: 'Admin', icon: LayoutDashboard, adminOnly: true },
   { href: '/dashboard/academics', label: 'Academics', icon: BookOpen },
   { href: '/dashboard/students', label: 'Students', icon: Users, adminOnly: true },
   { href: '/dashboard/placements', label: 'Placements', icon: Briefcase },
@@ -47,14 +48,26 @@ export function SidebarNav() {
 
 
   const filteredMenuItems = menuItems.filter(item => {
+    // Show desktop icon for all roles
+    if (item.href === '/dashboard/desktop') return true;
+
     if (role === 'student') return !item.adminOnly && !item.facultyOnly;
     if (role === 'faculty') return !item.adminOnly && !item.studentOnly;
     if (role === 'admin') return !item.studentOnly && !item.facultyOnly;
     return false; // Default to not showing anything if role is not set
+  }).filter(item => {
+      // remove duplicate dashboard links
+      if (item.label === 'Dashboard') {
+        if (role === 'student' && item.studentOnly) return true;
+        if (role === 'faculty' && item.facultyOnly) return true;
+        if (role === 'admin' && item.adminOnly) return true;
+        if (!item.studentOnly && !item.facultyOnly && !item.adminOnly) return true;
+        return false;
+      }
+      if (item.label === 'Admin' && role !== 'admin') return false;
+      return true;
   });
 
-  const isDesktop = pathname === '/dashboard/desktop';
-  if (isDesktop) return null;
 
   return (
     <TooltipProvider>

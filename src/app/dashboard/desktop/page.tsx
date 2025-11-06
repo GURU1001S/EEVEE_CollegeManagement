@@ -69,7 +69,7 @@ const DesktopIcon = ({
 const menuItems = [
     { href: '/dashboard/student', label: 'Dashboard', icon: LayoutDashboard, studentOnly: true },
     { href: '/dashboard/faculty', label: 'Dashboard', icon: LayoutDashboard, facultyOnly: true },
-    { href: '/dashboard', label: 'Admin', icon: Atom, adminOnly: true },
+    { href: '/dashboard', label: 'Admin', icon: LayoutDashboard, adminOnly: true },
     { href: '/dashboard/academics', label: 'Academics', icon: BookOpen },
     { href: '/dashboard/students', label: 'Students', icon: Users, adminOnly: true },
     { href: '/dashboard/placements', label: 'Placements', icon: Briefcase },
@@ -95,6 +95,15 @@ export default function DesktopPage() {
     if (role === 'faculty') return !item.adminOnly && !item.studentOnly;
     if (role === 'admin') return !item.studentOnly && !item.facultyOnly;
     return false; // Default to not showing anything if role is not set
+  }).filter(item => {
+      // remove duplicate dashboard links
+      if (item.label === 'Dashboard') {
+        if (role === 'student' && item.studentOnly) return true;
+        if (role === 'faculty' && item.facultyOnly) return true;
+        if (role === 'admin' && item.adminOnly) return true;
+        return false;
+      }
+      return true;
   });
 
   return (
