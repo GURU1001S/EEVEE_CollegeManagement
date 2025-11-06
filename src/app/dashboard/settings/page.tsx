@@ -28,7 +28,7 @@ const ProfileSection = () => {
           <div className="flex items-center gap-6">
             <div className="relative">
               <Avatar className="h-24 w-24">
-                <AvatarImage src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1080" />
+                
                 <AvatarFallback>ST</AvatarFallback>
               </Avatar>
               <Button size="icon" variant="outline" className="absolute bottom-0 right-0 h-8 w-8 rounded-full">
