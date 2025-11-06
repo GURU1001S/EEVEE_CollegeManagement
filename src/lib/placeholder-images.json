@@ -1,3 +1,22 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "user-avatar-01",
+      "description": "User avatar",
+      "imageUrl": "https://images.unsplash.com/photo-1590086782792-42dd2350140d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjIzNzk2MTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "dashboard-students",
+      "description": "A group of students",
+      "imageUrl": "https://images.unsplash.com/photo-1758270704384-9df36d94a29d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzdHVkZW50cyUyMGNsYXNzcm9vbXxlbnwwfHx8fDE3NjI0MTgwNDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "students classroom"
+    },
+    {
+      "id": "dashboard-faculty",
+      "description": "A faculty member teaching",
+      "imageUrl": "https://images.unsplash.com/photo-1758270704925-fa59d93119c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZWFjaGVyJTIwbGVjdHVyZXxlbnwwfHx8fDE3NjIzNjA2NDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "teacher lecture"
+    }
+  ]
 }

@@ -1,4 +1,4 @@
-import { Lock, Mail, UserCheck } from 'lucide-react';
+import { Atom, Lock, Mail, User, UserCheck } from 'lucide-react';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
@@ -21,16 +21,23 @@ import {
 } from '@/components/ui/select';
 import { Logo } from '@/components/logo';
 
-export default function LoginPage() {
+export default function SignupPage() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-emerald-50 dark:from-slate-900 dark:via-slate-800 dark:to-emerald-950 p-4">
       <Card className="w-full max-w-md bg-white/60 dark:bg-slate-950/60 backdrop-blur-xl shadow-2xl rounded-2xl border-white/20 dark:border-slate-800/50">
         <CardHeader className="items-center text-center p-6">
           <Logo />
-          <CardTitle className="font-headline text-3xl mt-4">Welcome Back</CardTitle>
-          <CardDescription>One Connected Campus — One Smart Platform</CardDescription>
+          <CardTitle className="font-headline text-3xl mt-4">Create an Account</CardTitle>
+          <CardDescription>Join our connected campus platform.</CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4 p-6">
+          <div className="grid gap-2">
+            <Label htmlFor="name">Full Name</Label>
+            <div className="relative">
+              <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input id="name" placeholder="John Doe" className="pl-10" />
+            </div>
+          </div>
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>
             <div className="relative">
@@ -56,7 +63,6 @@ export default function LoginPage() {
                 <SelectContent>
                   <SelectItem value="student">Student</SelectItem>
                   <SelectItem value="faculty">Faculty</SelectItem>
-                  <SelectItem value="admin">Admin</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -64,17 +70,12 @@ export default function LoginPage() {
         </CardContent>
         <CardFooter className="flex flex-col gap-4 p-6">
           <Button className="w-full" asChild>
-            <Link href="/dashboard">Login</Link>
+            <Link href="/dashboard">Create Account</Link>
           </Button>
-          <div className="text-sm text-center">
-            <Link href="#" className="underline text-muted-foreground hover:text-primary">
-              Forgot your password?
-            </Link>
-          </div>
           <div className="text-sm text-center text-muted-foreground">
-            Don&apos;t have an account?{' '}
-            <Link href="/signup" className="underline font-medium text-primary hover:text-primary/80">
-              Sign up
+            Already have an account?{' '}
+            <Link href="/" className="underline font-medium text-primary hover:text-primary/80">
+              Log in
             </Link>
           </div>
         </CardFooter>
