@@ -1,7 +1,7 @@
 'use client';
 
 import { Bell, Lock, User, Palette, Edit, Upload, Save, X } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
@@ -280,5 +280,3 @@ export default function SettingsPage() {
     </div>
   );
 }
-
-    
