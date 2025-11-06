@@ -15,6 +15,7 @@ import {
   Ticket,
   Utensils,
   Wallet as WalletIcon,
+  GlassWater,
 } from 'lucide-react';
 import {
   Card,
@@ -41,86 +42,56 @@ import { Label } from '@/components/ui/label';
 
 const menu = {
   breakfast: [
-    {
-      id: 1,
-      name: 'Masala Dosa',
-      price: 60,
-      image: 'https://picsum.photos/seed/dosa/400/300',
-      category: 'South Indian',
-      isVeg: true,
-      rating: 4.5,
-    },
-    {
-      id: 2,
-      name: 'Idli Sambar',
-      price: 40,
-      image: 'https://picsum.photos/seed/idli/400/300',
-      category: 'South Indian',
-      isVeg: true,
-      rating: 4.2,
-    },
+    { id: 1, name: 'Masala Dosa', price: 60, category: 'South Indian', isVeg: true, rating: 4.5 },
+    { id: 2, name: 'Idli Sambar', price: 40, category: 'South Indian', isVeg: true, rating: 4.2 },
+    { id: 3, name: 'Poori Sabji', price: 55, category: 'North Indian', isVeg: true, rating: 4.4 },
+    { id: 4, name: 'Aloo Paratha', price: 50, category: 'North Indian', isVeg: true, rating: 4.6 },
+    { id: 5, name: 'Poha', price: 35, category: 'Maharashtrian', isVeg: true, rating: 4.3 },
+    { id: 6, name: 'Chole Bhature', price: 70, category: 'North Indian', isVeg: true, rating: 4.7 },
+    { id: 7, name: 'Upma', price: 40, category: 'South Indian', isVeg: true, rating: 4.1 },
+    { id: 8, name: 'Bread Omelette', price: 45, category: 'Continental', isVeg: false, rating: 4.5 },
   ],
   lunch: [
-    {
-      id: 3,
-      name: 'North Indian Thali',
-      price: 120,
-      image: 'https://picsum.photos/seed/thali/400/300',
-      category: 'North Indian',
-      isVeg: true,
-      rating: 4.6,
-    },
-    {
-      id: 4,
-      name: 'Chicken Biryani',
-      price: 150,
-      image: 'https://picsum.photos/seed/biryani/400/300',
-      category: 'North Indian',
-      isVeg: false,
-      rating: 4.8,
-    },
-  ],
-  snacks: [
-    {
-      id: 5,
-      name: 'Samosa',
-      price: 15,
-      image: 'https://picsum.photos/seed/samosa/400/300',
-      category: 'Snacks',
-      isVeg: true,
-      rating: 4.3,
-    },
-     {
-      id: 6,
-      name: 'Veg Sandwich',
-      price: 50,
-      image: 'https://picsum.photos/seed/sandwich/400/300',
-      category: 'Snacks',
-      isVeg: true,
-      rating: 4.1,
-    },
+    { id: 9, name: 'North Indian Thali', price: 120, category: 'North Indian', isVeg: true, rating: 4.6 },
+    { id: 10, name: 'Chicken Biryani', price: 150, category: 'North Indian', isVeg: false, rating: 4.8 },
+    { id: 11, name: 'South Indian Thali', price: 110, category: 'South Indian', isVeg: true, rating: 4.5 },
+    { id: 12, name: 'Paneer Butter Masala', price: 130, category: 'North Indian', isVeg: true, rating: 4.7 },
+    { id: 13, name: 'Dal Makhani', price: 110, category: 'North Indian', isVeg: true, rating: 4.6 },
+    { id: 14, name: 'Fish Curry Rice', price: 160, category: 'Coastal', isVeg: false, rating: 4.7 },
+    { id: 15, name: 'Rajma Chawal', price: 90, category: 'North Indian', isVeg: true, rating: 4.4 },
+    { id: 16, name: 'Egg Curry', price: 110, category: 'North Indian', isVeg: false, rating: 4.4 },
   ],
   dinner: [
-     {
-      id: 7,
-      name: 'Paneer Butter Masala',
-      price: 130,
-      image: 'https://picsum.photos/seed/paneer/400/300',
-      category: 'North Indian',
-      isVeg: true,
-      rating: 4.7,
-    },
-     {
-      id: 8,
-      name: 'Egg Curry',
-      price: 110,
-      image: 'https://picsum.photos/seed/eggcurry/400/300',
-      category: 'North Indian',
-      isVeg: false,
-      rating: 4.4,
-    },
-  ]
+    { id: 17, name: 'Veg Fried Rice', price: 100, category: 'Chinese', isVeg: true, rating: 4.3 },
+    { id: 18, name: 'Chicken Hakka Noodles', price: 120, category: 'Chinese', isVeg: false, rating: 4.5 },
+    { id: 19, name: 'Kadhai Paneer', price: 135, category: 'North Indian', isVeg: true, rating: 4.6 },
+    { id: 20, name: 'Butter Chicken', price: 160, category: 'North Indian', isVeg: false, rating: 4.8 },
+    { id: 21, name: 'Tandoori Roti', price: 15, category: 'Breads', isVeg: true, rating: 4.2 },
+    { id: 22, name: 'Garlic Naan', price: 30, category: 'Breads', isVeg: true, rating: 4.5 },
+    { id: 23, name: 'Dal Fry', price: 90, category: 'North Indian', isVeg: true, rating: 4.4 },
+    { id: 24, name: 'Jeera Rice', price: 70, category: 'Rice', isVeg: true, rating: 4.1 },
+  ],
+  snacks: [
+    { id: 25, name: 'Samosa', price: 15, category: 'Snacks', isVeg: true, rating: 4.3 },
+    { id: 26, name: 'Veg Sandwich', price: 50, category: 'Snacks', isVeg: true, rating: 4.1 },
+    { id: 27, name: 'Paneer Tikka', price: 90, category: 'Tandoor', isVeg: true, rating: 4.6 },
+    { id: 28, name: 'French Fries', price: 60, category: 'Snacks', isVeg: true, rating: 4.2 },
+    { id: 29, name: 'Vada Pav', price: 25, category: 'Maharashtrian', isVeg: true, rating: 4.7 },
+    { id: 30, name: 'Kachori', price: 20, category: 'Snacks', isVeg: true, rating: 4.3 },
+    { id: 31, name: 'Bhel Puri', price: 40, category: 'Chaat', isVeg: true, rating: 4.5 },
+    { id: 32, name: 'Chicken 65', price: 120, category: 'Snacks', isVeg: false, rating: 4.6 },
+    { id: 33, name: 'Chilli Paneer Dry', price: 110, category: 'Chinese', isVeg: true, rating: 4.4 },
+    { id: 34, name: 'Veg Momos', price: 70, category: 'Tibetan', isVeg: true, rating: 4.5 },
+  ],
+  drinks: [
+    { id: 35, name: 'Masala Chai', price: 20, category: 'Beverages', isVeg: true, rating: 4.8 },
+    { id: 36, name: 'Filter Coffee', price: 25, category: 'Beverages', isVeg: true, rating: 4.7 },
+    { id: 37, name: 'Fresh Lime Soda', price: 30, category: 'Beverages', isVeg: true, rating: 4.5 },
+    { id: 38, name: 'Lassi', price: 40, category: 'Beverages', isVeg: true, rating: 4.6 },
+    { id: 39, name: 'Cold Drink', price: 25, category: 'Beverages', isVeg: true, rating: 4.2 },
+  ],
 };
+
 
 type MenuItem = (typeof menu.breakfast)[0];
 type CartItem = {
@@ -131,38 +102,28 @@ type CartItem = {
 const MenuSection = ({ title, items, onAddToCart }: { title: string, items: MenuItem[], onAddToCart: (item: MenuItem) => void }) => (
   <div className="space-y-4">
     <h2 className="text-2xl font-bold font-headline">{title}</h2>
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
       {items.map((item) => (
-        <Card key={item.id}>
-          <CardContent className="p-0">
-            <Image
-              src={item.image}
-              alt={item.name}
-              width={400}
-              height={300}
-              className="rounded-t-lg object-cover w-full aspect-[4/3]"
-              data-ai-hint="food item"
-            />
-             <div className="p-4">
-                 <div className="flex justify-between items-start">
-                    <h3 className="font-semibold text-lg">{item.name}</h3>
-                    <Badge variant={item.isVeg ? "default" : "destructive"} className={item.isVeg ? "bg-emerald-500 text-white" : ""}>
-                        {item.isVeg ? 'Veg' : 'Non-Veg'}
-                    </Badge>
-                 </div>
-                <p className="text-muted-foreground text-sm">{item.category}</p>
-                <div className="flex justify-between items-center mt-4">
-                    <p className="text-lg font-bold">₹{item.price}</p>
-                    <div className="flex items-center gap-1 text-amber-500">
-                        <Star className="h-4 w-4" />
-                        <span className="text-sm font-semibold">{item.rating}</span>
-                    </div>
-                </div>
+        <Card key={item.id} className="flex flex-col">
+          <CardContent className="p-4 flex-1">
+             <div className="flex justify-between items-start mb-2">
+                <h3 className="font-semibold">{item.name}</h3>
+                <Badge variant={item.isVeg ? "default" : "destructive"} className={`text-xs ${item.isVeg ? "bg-emerald-500 text-white" : ""}`}>
+                    {item.isVeg ? 'Veg' : 'Non-Veg'}
+                </Badge>
              </div>
+            <p className="text-muted-foreground text-xs">{item.category}</p>
           </CardContent>
-          <CardFooter>
-            <Button className="w-full" onClick={() => onAddToCart(item)}>
-                <Plus className="mr-2 h-4 w-4" /> Add to Cart
+          <CardFooter className="flex items-center justify-between p-4 pt-0">
+            <div className="flex flex-col">
+              <p className="text-sm font-bold">₹{item.price}</p>
+              <div className="flex items-center gap-1 text-amber-500">
+                  <Star className="h-3 w-3" />
+                  <span className="text-xs font-semibold">{item.rating}</span>
+              </div>
+            </div>
+            <Button size="sm" onClick={() => onAddToCart(item)}>
+                <Plus className="mr-2 h-4 w-4" /> Add
             </Button>
           </CardFooter>
         </Card>
@@ -217,6 +178,8 @@ const OrderFood = ({ cart, setCart }: { cart: CartItem[], setCart: React.Dispatc
             <MenuSection title="Snacks" items={menu.snacks} onAddToCart={addToCart} />
             <Separator/>
             <MenuSection title="Dinner" items={menu.dinner} onAddToCart={addToCart} />
+            <Separator/>
+            <MenuSection title="Drinks" items={menu.drinks} onAddToCart={addToCart} />
         </div>
         <div className="lg:col-span-1">
              <Card className="sticky top-8">
@@ -228,17 +191,17 @@ const OrderFood = ({ cart, setCart }: { cart: CartItem[], setCart: React.Dispatc
                     {cart.length === 0 ? (
                         <p className="text-muted-foreground text-center">Your cart is empty.</p>
                     ) : (
-                        <div className="space-y-4">
+                        <div className="space-y-4 max-h-96 overflow-y-auto pr-2">
                             {cart.map(({ item, quantity }) => (
                                 <div key={item.id} className="flex justify-between items-center">
                                     <div>
-                                        <p className="font-medium">{item.name}</p>
-                                        <p className="text-sm text-muted-foreground">₹{item.price}</p>
+                                        <p className="font-medium text-sm">{item.name}</p>
+                                        <p className="text-xs text-muted-foreground">₹{item.price}</p>
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <Button size="icon" variant="ghost" className="h-7 w-7" onClick={() => updateQuantity(item.id, quantity - 1)}><Minus className="h-4 w-4"/></Button>
-                                        <span>{quantity}</span>
-                                        <Button size="icon" variant="ghost" className="h-7 w-7" onClick={() => updateQuantity(item.id, quantity + 1)}><Plus className="h-4 w-4"/></Button>
+                                        <Button size="icon" variant="ghost" className="h-6 w-6" onClick={() => updateQuantity(item.id, quantity - 1)}><Minus className="h-3 w-3"/></Button>
+                                        <span className="text-sm">{quantity}</span>
+                                        <Button size="icon" variant="ghost" className="h-6 w-6" onClick={() => updateQuantity(item.id, quantity + 1)}><Plus className="h-3 w-3"/></Button>
                                     </div>
                                 </div>
                             ))}
