@@ -29,16 +29,16 @@ import {
 import { Separator } from '@/components/ui/separator';
 
 const feeBreakdown = [
-  { item: 'Tuition Fee', amount: 5000, icon: Book },
-  { item: 'Hostel Fee', amount: 1500, icon: Home },
-  { item: 'Examination Fee', amount: 500, icon: File },
-  { item: 'Miscellaneous', amount: 250, icon: DollarSign },
+  { item: 'Tuition Fee', amount: 75000, icon: Book },
+  { item: 'Hostel Fee', amount: 20000, icon: Home },
+  { item: 'Examination Fee', amount: 5000, icon: File },
+  { item: 'Miscellaneous', amount: 2500, icon: DollarSign },
 ];
 
 const paymentHistory = [
-  { id: 'INV001', date: '2023-10-15', amount: 7250, status: 'Paid' },
-  { id: 'INV002', date: '2023-04-15', amount: 7250, status: 'Paid' },
-  { id: 'INV003', date: '2022-10-15', amount: 6800, status: 'Paid' },
+  { id: 'INV001', date: '2023-10-15', amount: 102500, status: 'Paid' },
+  { id: 'INV002', date: '2023-04-15', amount: 102500, status: 'Paid' },
+  { id: 'INV003', date: '2022-10-15', amount: 98000, status: 'Paid' },
 ];
 
 const totalFee = feeBreakdown.reduce((sum, item) => sum + item.amount, 0);
@@ -68,13 +68,13 @@ export default function FeesPage() {
                       <item.icon className="h-5 w-5 text-muted-foreground" />
                       <span>{item.item}</span>
                     </div>
-                    <span className="font-medium">${item.amount.toFixed(2)}</span>
+                    <span className="font-medium">₹{item.amount.toFixed(2)}</span>
                   </li>
                 ))}
                 <Separator />
                 <li className="flex justify-between items-center font-bold text-lg">
                   <span>Total Amount</span>
-                  <span>${totalFee.toFixed(2)}</span>
+                  <span>₹{totalFee.toFixed(2)}</span>
                 </li>
               </ul>
             </CardContent>
@@ -111,7 +111,7 @@ export default function FeesPage() {
                     <TableRow key={payment.id}>
                       <TableCell className="font-medium">{payment.id}</TableCell>
                       <TableCell>{payment.date}</TableCell>
-                      <TableCell>${payment.amount.toFixed(2)}</TableCell>
+                      <TableCell>₹{payment.amount.toFixed(2)}</TableCell>
                       <TableCell>
                         <span className="px-2 py-1 text-xs font-medium rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300">
                           {payment.status}

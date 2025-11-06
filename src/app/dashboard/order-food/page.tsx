@@ -24,7 +24,7 @@ const menuItems = [
     id: 1,
     name: 'Fusion Bowl',
     description: 'A vibrant mix of quinoa, roasted veggies, and avocado.',
-    price: 12.5,
+    price: 250,
     image: 'https://picsum.photos/seed/101/400/300',
     category: 'Bowls',
   },
@@ -32,7 +32,7 @@ const menuItems = [
     id: 2,
     name: 'Zenith Sandwich',
     description: 'Grilled chicken, pesto, and mozzarella on ciabatta.',
-    price: 9.75,
+    price: 180,
     image: 'https://picsum.photos/seed/102/400/300',
     category: 'Sandwiches',
   },
@@ -40,7 +40,7 @@ const menuItems = [
     id: 3,
     name: 'Cosmic Pizza',
     description: 'Artichoke, olives, and feta on a crispy crust.',
-    price: 15.0,
+    price: 350,
     image: 'https://picsum.photos/seed/103/400/300',
     category: 'Main Course',
   },
@@ -48,7 +48,7 @@ const menuItems = [
     id: 4,
     name: 'Galaxy Wrap',
     description: 'Spicy black bean patty with fresh salsa and greens.',
-    price: 8.5,
+    price: 150,
     image: 'https://picsum.photos/seed/104/400/300',
     category: 'Wraps',
   },
@@ -57,7 +57,7 @@ const menuItems = [
 export default function OrderFoodPage() {
   // Mock state for cart
   const cartItems = 2;
-  const cartTotal = 22.25;
+  const cartTotal = 430;
 
   return (
     <div className="flex flex-col gap-8">
@@ -97,7 +97,7 @@ export default function OrderFoodPage() {
                       </div>
                     </CardContent>
                     <CardFooter className="flex justify-between items-center p-4 pt-0">
-                      <p className="text-lg font-bold">${item.price.toFixed(2)}</p>
+                      <p className="text-lg font-bold">₹{item.price.toFixed(2)}</p>
                       <Button>Add to Cart</Button>
                     </CardFooter>
                   </Card>
@@ -121,7 +121,7 @@ export default function OrderFoodPage() {
                         <div className="flex justify-between items-center">
                             <div>
                                 <p className="font-medium">Fusion Bowl</p>
-                                <p className="text-sm text-muted-foreground">$12.50</p>
+                                <p className="text-sm text-muted-foreground">₹250.00</p>
                             </div>
                              <div className="flex items-center gap-2">
                                 <Button variant="outline" size="icon" className="h-7 w-7"><Minus className="h-3 w-3"/></Button>
@@ -132,7 +132,7 @@ export default function OrderFoodPage() {
                          <div className="flex justify-between items-center">
                             <div>
                                 <p className="font-medium">Zenith Sandwich</p>
-                                <p className="text-sm text-muted-foreground">$9.75</p>
+                                <p className="text-sm text-muted-foreground">₹180.00</p>
                             </div>
                              <div className="flex items-center gap-2">
                                 <Button variant="outline" size="icon" className="h-7 w-7"><Minus className="h-3 w-3"/></Button>
@@ -149,7 +149,7 @@ export default function OrderFoodPage() {
                 <CardFooter className="flex flex-col gap-4">
                      <div className="flex justify-between items-center w-full font-bold text-lg">
                         <span>Total</span>
-                        <span>${cartTotal.toFixed(2)}</span>
+                        <span>₹{cartTotal.toFixed(2)}</span>
                     </div>
                     <Button className="w-full">
                         <ShoppingCart className="mr-2 h-4 w-4" />
@@ -169,11 +169,11 @@ export default function OrderFoodPage() {
               <ul className="space-y-3">
                 <li className="flex justify-between">
                     <span>Order #1254</span>
-                    <span className="text-muted-foreground">$22.25</span>
+                    <span className="text-muted-foreground">₹430.00</span>
                 </li>
                  <li className="flex justify-between">
                     <span>Order #1251</span>
-                    <span className="text-muted-foreground">$15.00</span>
+                    <span className="text-muted-foreground">₹350.00</span>
                 </li>
               </ul>
             </CardContent>

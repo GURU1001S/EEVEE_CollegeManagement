@@ -20,7 +20,7 @@ export default function FinancePage() {
             <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">$1,250.00</div>
+            <div className="text-2xl font-bold">₹95,000.00</div>
             <p className="text-xs text-muted-foreground">Tuition due for the current semester.</p>
             <Button variant="outline" size="sm" className="mt-4">
               View Details
