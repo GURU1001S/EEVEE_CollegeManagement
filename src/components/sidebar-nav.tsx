@@ -16,6 +16,7 @@ import {
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { useEffect, useState } from 'react';
 
 const menuItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard, adminOnly: true },
@@ -36,16 +37,19 @@ const settingsMenuItem = { href: '/dashboard/settings', label: 'Settings', icon:
 
 export function SidebarNav() {
   const pathname = usePathname();
+  const [role, setRole] = useState<'student' | 'faculty' | 'admin' | null>(null);
 
-  const isStudent = pathname.includes('/student');
-  const isFaculty = pathname.includes('/faculty');
-  const isAdmin = !isStudent && !isFaculty;
+  useEffect(() => {
+    const storedRole = localStorage.getItem('userRole') as 'student' | 'faculty' | 'admin' | null;
+    setRole(storedRole);
+  }, [pathname]);
+
 
   const filteredMenuItems = menuItems.filter(item => {
-    if (isStudent) return !item.adminOnly && !item.facultyOnly;
-    if (isFaculty) return !item.adminOnly && !item.studentOnly;
-    if (isAdmin) return !item.studentOnly && !item.facultyOnly;
-    return true;
+    if (role === 'student') return !item.adminOnly && !item.facultyOnly;
+    if (role === 'faculty') return !item.adminOnly && !item.studentOnly;
+    if (role === 'admin') return !item.studentOnly && !item.facultyOnly;
+    return !item.studentOnly && !item.facultyOnly && !item.adminOnly;
   });
 
   return (

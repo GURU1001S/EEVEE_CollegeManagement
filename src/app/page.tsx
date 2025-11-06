@@ -16,33 +16,71 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import { Logo } from '@/components/logo';
+import { useToast } from '@/hooks/use-toast';
+
+const credentials = {
+  student: { email: 'student@example.com', password: 'password' },
+  faculty: { email: 'faculty@example.com', password: 'password' },
+  admin: { email: 'admin@example.com', password: 'password' },
+};
+
+type Role = 'student' | 'faculty' | 'admin';
 
 export default function LoginPage() {
-  const [role, setRole] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const router = useRouter();
+  const { toast } = useToast();
 
   const handleLogin = () => {
-    switch (role) {
-      case 'student':
-        router.push('/dashboard/student');
-        break;
-      case 'faculty':
-        router.push('/dashboard/faculty');
-        break;
-      case 'admin':
-        router.push('/dashboard');
-        break;
-      default:
-        // Optional: handle case where no role is selected
-        break;
+    setError('');
+    let loggedIn = false;
+    let role: Role | '' = '';
+
+    if (
+      email === credentials.student.email &&
+      password === credentials.student.password
+    ) {
+      role = 'student';
+      loggedIn = true;
+    } else if (
+      email === credentials.faculty.email &&
+      password === credentials.faculty.password
+    ) {
+      role = 'faculty';
+      loggedIn = true;
+    } else if (
+      email === credentials.admin.email &&
+      password === credentials.admin.password
+    ) {
+      role = 'admin';
+      loggedIn = true;
+    }
+
+    if (loggedIn) {
+      localStorage.setItem('userRole', role);
+      switch (role) {
+        case 'student':
+          router.push('/dashboard/student');
+          break;
+        case 'faculty':
+          router.push('/dashboard/faculty');
+          break;
+        case 'admin':
+          router.push('/dashboard');
+          break;
+        default:
+          break;
+      }
+    } else {
+      setError('Invalid email or password.');
+      toast({
+        variant: 'destructive',
+        title: 'Login Failed',
+        description: 'Invalid email or password.',
+      });
     }
   };
 
@@ -59,35 +97,34 @@ export default function LoginPage() {
             <Label htmlFor="email">Email</Label>
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input id="email" type="email" placeholder="m@example.com" className="pl-10" />
+              <Input
+                id="email"
+                type="email"
+                placeholder="m@example.com"
+                className="pl-10"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
           </div>
           <div className="grid gap-2">
             <Label htmlFor="password">Password</Label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input id="password" type="password" placeholder="••••••••" className="pl-10" />
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                className="pl-10"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
           </div>
-          <div className="grid gap-2">
-            <Label htmlFor="role">Role</Label>
-            <div className="relative">
-              <UserCheck className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Select onValueChange={setRole} value={role}>
-                <SelectTrigger className="pl-10">
-                  <SelectValue placeholder="Select your role" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="student">Student</SelectItem>
-                  <SelectItem value="faculty">Faculty</SelectItem>
-                  <SelectItem value="admin">Admin</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
+          {error && <p className="text-sm text-destructive">{error}</p>}
         </CardContent>
         <CardFooter className="flex flex-col gap-4 p-6">
-          <Button className="w-full" onClick={handleLogin} disabled={!role}>
+          <Button className="w-full" onClick={handleLogin}>
             Login
           </Button>
           <div className="text-sm text-center">
