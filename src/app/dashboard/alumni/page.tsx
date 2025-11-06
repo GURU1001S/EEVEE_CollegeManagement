@@ -43,7 +43,7 @@ const alumni = [
     company: 'Google',
     role: 'Software Engineer',
     location: 'Bengaluru',
-    avatar: 'https://i.pravatar.cc/150?u=a01',
+    avatar: 'https://picsum.photos/seed/anime1/150/150',
     isMentor: true,
   },
   {
@@ -52,7 +52,7 @@ const alumni = [
     company: 'Microsoft',
     role: 'Product Manager',
     location: 'Hyderabad',
-    avatar: 'https://i.pravatar.cc/150?u=a02',
+    avatar: 'https://picsum.photos/seed/anime2/150/150',
     isMentor: false,
   },
   {
@@ -61,7 +61,7 @@ const alumni = [
     company: 'Amazon',
     role: 'Data Scientist',
     location: 'Remote',
-    avatar: 'https://i.pravatar.cc/150?u=a03',
+    avatar: 'https://picsum.photos/seed/anime3/150/150',
     isMentor: true,
   },
   {
@@ -70,7 +70,7 @@ const alumni = [
     company: 'Startup Inc.',
     role: 'Founder & CEO',
     location: 'Pune',
-    avatar: 'https://i.pravatar.cc/150?u=a04',
+    avatar: 'https://picsum.photos/seed/anime4/150/150',
     isMentor: true,
   },
 ];

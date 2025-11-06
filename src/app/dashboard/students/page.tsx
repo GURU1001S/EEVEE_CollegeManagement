@@ -32,7 +32,7 @@ const students = [
   {
     name: 'Olivia Martin',
     email: 'olivia.martin@email.com',
-    avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026704d',
+    avatar: 'https://picsum.photos/seed/anime1/150/150',
     id: 'STU-001',
     course: 'Computer Science',
     year: 3,
@@ -41,7 +41,7 @@ const students = [
   {
     name: 'Jackson Lee',
     email: 'jackson.lee@email.com',
-    avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026705d',
+    avatar: 'https://picsum.photos/seed/anime2/150/150',
     id: 'STU-002',
     course: 'Mechanical Engineering',
     year: 4,
@@ -50,7 +50,7 @@ const students = [
   {
     name: 'Isabella Nguyen',
     email: 'isabella.nguyen@email.com',
-    avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026706d',
+    avatar: 'https://picsum.photos/seed/anime3/150/150',
     id: 'STU-003',
     course: 'Business Administration',
     year: 2,
@@ -59,7 +59,7 @@ const students = [
   {
     name: 'William Kim',
     email: 'will@email.com',
-    avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026707d',
+    avatar: 'https://picsum.photos/seed/anime4/150/150',
     id: 'STU-004',
     course: 'Fine Arts',
     year: 1,
@@ -68,7 +68,7 @@ const students = [
   {
     name: 'Sofia Davis',
     email: 'sofia.davis@email.com',
-    avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026708d',
+    avatar: 'https://picsum.photos/seed/anime5/150/150',
     id: 'STU-005',
     course: 'Physics',
     year: 3,
