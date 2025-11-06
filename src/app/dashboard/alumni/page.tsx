@@ -35,6 +35,8 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 const alumni = [
   {
@@ -105,7 +107,7 @@ const jobs = [
     }
 ];
 
-const discussions = [
+const initialDiscussions = [
     {
         title: "Career advice for shifting from SWE to PM role?",
         author: "Aisha Khan (2019)",
@@ -124,7 +126,7 @@ const AlumniCard = ({ person }: { person: (typeof alumni)[0] }) => (
   <Card>
     <CardContent className="p-4 flex flex-col items-center text-center">
       <Avatar className="h-20 w-20 mb-4">
-        <AvatarImage src={person.avatar} />
+        <AvatarImage src={person.avatar} data-ai-hint="anime character" />
         <AvatarFallback>{person.name.slice(0, 2)}</AvatarFallback>
       </Avatar>
       <p className="font-bold">{person.name}</p>
@@ -181,7 +183,7 @@ const MentorshipSection = () => (
                     <Card key={mentor.name} className="flex items-center p-4 justify-between">
                         <div className="flex items-center gap-4">
                             <Avatar>
-                                <AvatarImage src={mentor.avatar} />
+                                <AvatarImage src={mentor.avatar} data-ai-hint="anime character" />
                                 <AvatarFallback>{mentor.name.slice(0,2)}</AvatarFallback>
                             </Avatar>
                             <div>
@@ -248,43 +250,86 @@ const JobReferralSection = () => (
     </div>
 );
 
-const DiscussionForum = () => (
-    <div className="grid md:grid-cols-3 gap-6">
-        <div className="md:col-span-2 space-y-4">
-             {discussions.map(d => (
-                <Card key={d.title}>
-                    <CardContent className="p-4">
-                        <Badge variant="secondary" className="mb-2">{d.category}</Badge>
-                        <p className="font-bold mb-1">{d.title}</p>
-                        <div className="flex justify-between items-center text-sm text-muted-foreground">
-                            <span>by {d.author}</span>
-                            <span>{d.replies} replies</span>
-                        </div>
+const DiscussionForum = () => {
+    const { toast } = useToast();
+    const [discussions, setDiscussions] = useState(initialDiscussions);
+    const [newPost, setNewPost] = useState({ title: '', category: '', content: '' });
+
+    const handlePostSubmit = () => {
+        if (!newPost.title || !newPost.category || !newPost.content) {
+            toast({
+                variant: 'destructive',
+                title: 'Incomplete Post',
+                description: 'Please fill out all fields before posting.',
+            });
+            return;
+        }
+
+        const post = {
+            ...newPost,
+            author: 'You (Just now)',
+            replies: 0,
+        };
+
+        setDiscussions([post, ...discussions]);
+        setNewPost({ title: '', category: '', content: '' });
+        toast({
+            title: 'Post Successful!',
+            description: 'Your question has been added to the forum.',
+        });
+    };
+
+    return (
+        <div className="grid md:grid-cols-3 gap-6">
+            <div className="md:col-span-2 space-y-4">
+                 {discussions.map((d, i) => (
+                    <Card key={i}>
+                        <CardContent className="p-4">
+                            <Badge variant="secondary" className="mb-2">{d.category}</Badge>
+                            <p className="font-bold mb-1">{d.title}</p>
+                            <div className="flex justify-between items-center text-sm text-muted-foreground">
+                                <span>by {d.author}</span>
+                                <span>{d.replies} replies</span>
+                            </div>
+                        </CardContent>
+                    </Card>
+                 ))}
+            </div>
+            <div>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>New Post</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                        <Input 
+                            placeholder="Question Title..." 
+                            value={newPost.title}
+                            onChange={(e) => setNewPost({...newPost, title: e.target.value})}
+                        />
+                         <Select
+                            value={newPost.category}
+                            onValueChange={(value) => setNewPost({...newPost, category: value})}
+                         >
+                            <SelectTrigger><SelectValue placeholder="Select Category" /></SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="Career Advice">Career Advice</SelectItem>
+                                <SelectItem value="Interview Prep">Interview Prep</SelectItem>
+                                <SelectItem value="Higher Studies">Higher Studies</SelectItem>
+                                <SelectItem value="General">General</SelectItem>
+                            </SelectContent>
+                        </Select>
+                        <Textarea 
+                            placeholder="What's on your mind?"
+                            value={newPost.content}
+                            onChange={(e) => setNewPost({...newPost, content: e.target.value})}
+                        />
+                        <Button className="w-full" onClick={handlePostSubmit}>Post to Forum</Button>
                     </CardContent>
                 </Card>
-             ))}
+            </div>
         </div>
-        <div>
-            <Card>
-                <CardHeader>
-                    <CardTitle>New Post</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                    <Input placeholder="Question Title..." />
-                     <Select>
-                        <SelectTrigger><SelectValue placeholder="Select Category" /></SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="advice">Career Advice</SelectItem>
-                            <SelectItem value="prep">Interview Prep</SelectItem>
-                        </SelectContent>
-                    </Select>
-                    <Textarea placeholder="What's on your mind?"/>
-                    <Button className="w-full">Post to Forum</Button>
-                </CardContent>
-            </Card>
-        </div>
-    </div>
-)
+    );
+};
 
 
 export default function AlumniPage() {
