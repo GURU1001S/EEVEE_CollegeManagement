@@ -27,12 +27,13 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
+import Image from 'next/image';
 
 const students = [
   {
     name: 'Olivia Martin',
     email: 'olivia.martin@email.com',
-    avatar: 'https://picsum.photos/seed/anime1/150/150',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1080',
     id: 'STU-001',
     course: 'Computer Science',
     year: 3,
@@ -41,7 +42,7 @@ const students = [
   {
     name: 'Jackson Lee',
     email: 'jackson.lee@email.com',
-    avatar: 'https://picsum.photos/seed/anime2/150/150',
+    avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1080',
     id: 'STU-002',
     course: 'Mechanical Engineering',
     year: 4,
@@ -50,7 +51,7 @@ const students = [
   {
     name: 'Isabella Nguyen',
     email: 'isabella.nguyen@email.com',
-    avatar: 'https://picsum.photos/seed/anime3/150/150',
+    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1080',
     id: 'STU-003',
     course: 'Business Administration',
     year: 2,
@@ -59,7 +60,7 @@ const students = [
   {
     name: 'William Kim',
     email: 'will@email.com',
-    avatar: 'https://picsum.photos/seed/anime4/150/150',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1080',
     id: 'STU-004',
     course: 'Fine Arts',
     year: 1,
@@ -68,7 +69,7 @@ const students = [
   {
     name: 'Sofia Davis',
     email: 'sofia.davis@email.com',
-    avatar: 'https://picsum.photos/seed/anime5/150/150',
+    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1080',
     id: 'STU-005',
     course: 'Physics',
     year: 3,
@@ -126,7 +127,7 @@ export default function StudentsPage() {
                   <TableCell>
                     <div className="flex items-center gap-3">
                       <Avatar>
-                        <AvatarImage src={student.avatar} alt={student.name} />
+                        <Image src={student.avatar} alt={student.name} width={40} height={40} className="rounded-full" />
                         <AvatarFallback>
                           {student.name.charAt(0)}
                         </AvatarFallback>
@@ -193,3 +194,5 @@ export default function StudentsPage() {
     </div>
   );
 }
+
+    

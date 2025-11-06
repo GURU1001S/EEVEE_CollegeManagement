@@ -30,7 +30,6 @@ const deliveryPartners = [
   {
     id: 1,
     name: 'Swiggy',
-    logo: 'https://picsum.photos/seed/swiggy/100/100',
     available: true,
     deliveryTime: '25-30 min',
     minOrder: 149,
@@ -41,7 +40,6 @@ const deliveryPartners = [
   {
     id: 2,
     name: 'Zomato',
-    logo: 'https://picsum.photos/seed/zomato/100/100',
     available: true,
     deliveryTime: '20-25 min',
     minOrder: 99,
@@ -52,7 +50,6 @@ const deliveryPartners = [
   {
     id: 3,
     name: "Domino's Pizza",
-    logo: 'https://picsum.photos/seed/dominos/100/100',
     available: false,
     opensAt: '11:00 AM',
     deliveryTime: '30 min or free',
@@ -64,7 +61,6 @@ const deliveryPartners = [
   {
     id: 4,
     name: "McDonald's",
-    logo: 'https://picsum.photos/seed/mcd/100/100',
     available: true,
     deliveryTime: '15-20 min',
     minOrder: 199,
@@ -75,7 +71,6 @@ const deliveryPartners = [
   {
     id: 5,
     name: 'Subway',
-    logo: 'https://picsum.photos/seed/subway/100/100',
     available: true,
     deliveryTime: '20-25 min',
     minOrder: 159,
@@ -86,7 +81,6 @@ const deliveryPartners = [
   {
     id: 6,
     name: 'Campus Eats',
-    logo: 'https://picsum.photos/seed/campus/100/100',
     available: false,
     opensAt: '6:00 PM',
     deliveryTime: '45-50 min',
@@ -219,3 +213,5 @@ export default function OrderFoodPage() {
     </div>
   );
 }
+
+    

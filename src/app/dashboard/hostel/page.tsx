@@ -47,11 +47,12 @@ import {
 import { Calendar as CalendarComponent } from '@/components/ui/calendar';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
+import Image from 'next/image';
 
 const roommates = [
-    { name: 'Ajay', contact: '+91 9876543210', avatarSeed: 'roomie1' },
-    { name: 'Rohith', contact: '+91 9123456789', avatarSeed: 'roomie2' },
-    { name: 'Gold', contact: '+91 9988776655', avatarSeed: 'roomie3' },
+    { name: 'Ajay', contact: '+91 9876543210', avatarUrl: 'https://images.unsplash.com/photo-1639747280804-dd2d6b3d88ac?q=80&w=1080' },
+    { name: 'Rohith', contact: '+91 9123456789', avatarUrl: 'https://images.unsplash.com/photo-1639747280804-dd2d6b3d88ac?q=80&w=1080' },
+    { name: 'Gold', contact: '+91 9988776655', avatarUrl: 'https://images.unsplash.com/photo-1639747280804-dd2d6b3d88ac?q=80&w=1080' },
 ]
 
 const MyRoomSection = () => (
@@ -95,7 +96,7 @@ const MyRoomSection = () => (
           {roommates.map(roommate => (
             <Card key={roommate.name} className="flex items-center p-4 gap-4">
                 <Avatar className="h-12 w-12">
-                <AvatarImage src={`https://picsum.photos/seed/${roommate.avatarSeed}/100/100`} data-ai-hint="person portrait"/>
+                <Image src={roommate.avatarUrl} alt={roommate.name} width={48} height={48} className="rounded-full" data-ai-hint="person portrait"/>
                 <AvatarFallback>{roommate.name.slice(0,2).toUpperCase()}</AvatarFallback>
                 </Avatar>
                 <div>
@@ -433,3 +434,5 @@ export default function HostelPage() {
     </div>
   );
 }
+
+    

@@ -37,6 +37,7 @@ import {
 import { Textarea } from '@/components/ui/textarea';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
+import Image from 'next/image';
 
 const alumni = [
   {
@@ -45,7 +46,7 @@ const alumni = [
     company: 'Google',
     role: 'Software Engineer',
     location: 'Bengaluru',
-    avatar: 'https://picsum.photos/seed/anime1/150/150',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1080',
     isMentor: true,
   },
   {
@@ -54,7 +55,7 @@ const alumni = [
     company: 'Microsoft',
     role: 'Product Manager',
     location: 'Hyderabad',
-    avatar: 'https://picsum.photos/seed/anime2/150/150',
+    avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1080',
     isMentor: false,
   },
   {
@@ -63,7 +64,7 @@ const alumni = [
     company: 'Amazon',
     role: 'Data Scientist',
     location: 'Remote',
-    avatar: 'https://picsum.photos/seed/anime3/150/150',
+    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1080',
     isMentor: true,
   },
   {
@@ -72,7 +73,7 @@ const alumni = [
     company: 'Startup Inc.',
     role: 'Founder & CEO',
     location: 'Pune',
-    avatar: 'https://picsum.photos/seed/anime4/150/150',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1080',
     isMentor: true,
   },
 ];
@@ -126,7 +127,7 @@ const AlumniCard = ({ person }: { person: (typeof alumni)[0] }) => (
   <Card>
     <CardContent className="p-4 flex flex-col items-center text-center">
       <Avatar className="h-20 w-20 mb-4">
-        <AvatarImage src={person.avatar} data-ai-hint="anime character" />
+        <Image src={person.avatar} alt={person.name} width={80} height={80} className="rounded-full" data-ai-hint="anime character" />
         <AvatarFallback>{person.name.slice(0, 2)}</AvatarFallback>
       </Avatar>
       <p className="font-bold">{person.name}</p>
@@ -183,7 +184,7 @@ const MentorshipSection = () => (
                     <Card key={mentor.name} className="flex items-center p-4 justify-between">
                         <div className="flex items-center gap-4">
                             <Avatar>
-                                <AvatarImage src={mentor.avatar} data-ai-hint="anime character" />
+                                <Image src={mentor.avatar} alt={mentor.name} width={40} height={40} className="rounded-full" data-ai-hint="anime character" />
                                 <AvatarFallback>{mentor.name.slice(0,2)}</AvatarFallback>
                             </Avatar>
                             <div>
@@ -369,3 +370,5 @@ export default function AlumniPage() {
     </div>
   );
 }
+
+    

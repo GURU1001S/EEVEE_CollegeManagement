@@ -17,6 +17,66 @@
       "description": "A faculty member teaching",
       "imageUrl": "https://images.unsplash.com/photo-1758270704925-fa59d93119c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZWFjaGVyJTIwbGVjdHVyZXxlbnwwfHx8fDE3NjIzNjA2NDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "teacher lecture"
+    },
+    {
+      "id": "alumni-avatar-1",
+      "description": "Alumni avatar 1",
+      "imageUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1080",
+      "imageHint": "anime character"
+    },
+    {
+      "id": "alumni-avatar-2",
+      "description": "Alumni avatar 2",
+      "imageUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1080",
+      "imageHint": "anime character"
+    },
+    {
+      "id": "alumni-avatar-3",
+      "description": "Alumni avatar 3",
+      "imageUrl": "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1080",
+      "imageHint": "anime character"
+    },
+    {
+      "id": "alumni-avatar-4",
+      "description": "Alumni avatar 4",
+      "imageUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1080",
+      "imageHint": "anime character"
+    },
+    {
+      "id": "hostel-roommate-1",
+      "description": "Hostel roommate 1",
+      "imageUrl": "https://images.unsplash.com/photo-1639747280804-dd2d6b3d88ac?q=80&w=1080",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "student-avatar-1",
+      "description": "Student avatar 1",
+      "imageUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1080",
+      "imageHint": "person"
+    },
+    {
+      "id": "student-avatar-2",
+      "description": "Student avatar 2",
+      "imageUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1080",
+      "imageHint": "person"
+    },
+    {
+      "id": "student-avatar-3",
+      "description": "Student avatar 3",
+      "imageUrl": "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1080",
+      "imageHint": "person"
+    },
+    {
+      "id": "student-avatar-4",
+      "description": "Student avatar 4",
+      "imageUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1080",
+      "imageHint": "person"
+    },
+    {
+      "id": "student-avatar-5",
+      "description": "Student avatar 5",
+      "imageUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1080",
+      "imageHint": "person"
     }
   ]
 }
