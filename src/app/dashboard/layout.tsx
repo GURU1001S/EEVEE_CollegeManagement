@@ -1,20 +1,32 @@
+'use client';
+
 import { Bell, Search } from 'lucide-react';
-import { Logo } from '@/components/logo';
 import { SidebarNav } from '@/components/sidebar-nav';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { UserNav } from '@/components/user-nav';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useState } from 'react';
 
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const [isTaskbarVisible, setTaskbarVisible] = useState(false);
+
   return (
-    <div className="flex flex-col h-screen">
+    <div
+      className="flex flex-col h-screen"
+      onMouseEnter={() => setTaskbarVisible(true)}
+      onMouseLeave={() => setTaskbarVisible(false)}
+    >
       <main className="flex-1 overflow-auto p-4 sm:px-6">{children}</main>
-      <footer className="sticky bottom-0 z-30 flex h-16 items-center gap-4 border-t bg-background/95 px-4 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <footer
+        className={`sticky bottom-0 z-30 flex h-16 items-center gap-4 border-t bg-background/95 px-4 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-transform duration-300 ease-in-out ${
+          isTaskbarVisible ? 'translate-y-0' : 'translate-y-full'
+        }`}
+      >
         <SidebarNav />
         <div className="flex-1" />
         <div className="relative ml-auto flex-1 md:grow-0">
