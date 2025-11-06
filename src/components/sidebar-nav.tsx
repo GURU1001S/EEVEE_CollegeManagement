@@ -38,8 +38,8 @@ const settingsMenuItem = { href: '/dashboard/settings', label: 'Settings', icon:
 export function SidebarNav() {
   const pathname = usePathname();
 
-  const isStudent = pathname.startsWith('/dashboard/student');
-  const isFaculty = pathname.startsWith('/dashboard/faculty');
+  const isStudent = pathname.includes('/student');
+  const isFaculty = pathname.includes('/faculty');
   const isAdmin = !isStudent && !isFaculty;
 
   const filteredMenuItems = menuItems.filter(item => {
