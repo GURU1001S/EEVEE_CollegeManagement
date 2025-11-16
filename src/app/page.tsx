@@ -95,6 +95,7 @@ export default function LoginPage() {
                 className="pl-10"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                suppressHydrationWarning
               />
             </div>
           </div>
@@ -109,13 +110,14 @@ export default function LoginPage() {
                 className="pl-10"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                suppressHydrationWarning
               />
             </div>
           </div>
           {error && <p className="text-sm text-destructive">{error}</p>}
         </CardContent>
         <CardFooter className="flex flex-col gap-4 p-6">
-          <Button className="w-full" onClick={handleLogin}>
+          <Button className="w-full" onClick={handleLogin} suppressHydrationWarning>
             Login
           </Button>
           <div className="text-sm text-center">
