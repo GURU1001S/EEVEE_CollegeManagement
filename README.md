@@ -15,3 +15,36 @@ Features
 💾 Data Security: Secure authentication and encrypted record storage.
 
 🌐 Cross-Platform Support: Designed to work seamlessly on Windows, Linux, and macOS.
+
+
+System Overview
+
+Eevee OS is built around three core modules:
+
+Student Module: Handles student registration, records, and reports.
+
+Faculty Module: Manages teacher profiles, course assignments, and timetables.
+
+Admin Module: Controls access levels, system data, and settings.
+
+Each module interacts with a shared database, ensuring smooth synchronization across the platform.
+
+
+ Contributing
+
+Contributions are welcome!
+If you'd like to help improve Eevee OS:
+
+Fork the repo
+
+Create your feature branch (git checkout -b feature/your-feature)
+
+Commit your changes (git commit -m 'Add your feature')
+
+Push to your branch (git push origin feature/your-feature)
+
+Open a Pull Request
+
+📄 License
+
+This project is licensed under the MIT License.
